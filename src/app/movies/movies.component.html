@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <div class="row">
+    @for (movie of resData; track $index) {
+    <div class="col-lg-3 col-md-6">
+      <img [src]=" baseImg+movie.poster_path" alt="" width="100%">
+      <h2 class="h5 text-center">{{movie.title}}</h2>
+      <p class="lead text-center"> {{movie.overview.split(" ").slice(0,3).join(" ")}}</p>
+    </div>
+    }
+  </div>
+</div>
