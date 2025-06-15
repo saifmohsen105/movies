@@ -1,9 +1,7 @@
-import { DetailsCardComponent } from './details-card/details-card.component';
-import { MoviesComponent } from './movies/movies.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'movies', pathMatch: "full" },
-  { path: 'movies', component: MoviesComponent },
-  { path: 'details-card/:id', component:DetailsCardComponent }
+  { path: 'movies', loadComponent: () => import("./movies/movies.component").then(m => m.MoviesComponent) },
+  { path: 'details-card/:id', loadComponent: () => import("./details-card/details-card.component").then(m => m.DetailsCardComponent) }
 ];
