@@ -1,0 +1,46 @@
+<section class="min-h-screen bg-gradient-to-br from-[#1f1c2c] to-[#928dab] py-10 px-4">
+  <h2 class="text-white text-4xl font-bold text-center mb-6">🔥 Trending Movies</h2>
+
+  <!-- Search Box -->
+  <div class="flex justify-center mb-10">
+    <input type="text" placeholder="Search for a movie..."
+      class="w-full max-w-md px-4 py-3 rounded-full text-white outline-none border-purple-400 border-2 bg-[#2a2b38]"
+      (input)="searchOnMovie()" [(ngModel)]="search" />
+  </div>
+
+  <!-- Loading Spinner -->
+  @if (isLoading) {
+  <app-loading></app-loading>
+  }@else {
+  <!-- Not Found -->
+  @if (search && filteredMovies.length === 0) {
+  <img src="/notFound.png" alt="not found" class="mx-auto">
+  <p class="text-center text-white text-xl font-semibold">No movies found for "<span class="text-yellow-300">{{ search
+      }}</span>"</p>
+  }@else {
+  <!-- Movie Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+    @for (cards of filteredMovies.length > 0 ? filteredMovies : movies; track $index) {
+    @for (card of cards.results; track $index) {
+    <div (click)="sentId(card.id)"
+      class="bg-[#2a2b38] cursor-pointer rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 hover:shadow-purple-400">
+      <img [src]="'https://image.tmdb.org/t/p/w500' + card.poster_path" alt="{{ card.title }}"
+        class="w-full h-80 object-cover" />
+      <div class="p-4 text-white">
+        <h3 class="font-bold text-lg mb-1 truncate">{{ card.title }}</h3>
+        <p class="text-sm opacity-70">🎬 {{ card.release_date }}</p>
+        <p class="text-yellow-400">⭐ {{ card.vote_average }}</p>
+      </div>
+    </div>
+    }
+    }
+    @if(search.length == 0){
+    <div class="text-center">
+      <app-button (click)="loadMore()">Load More</app-button>
+    </div>
+    }
+  </div>
+  }
+  }
+
+</section>
