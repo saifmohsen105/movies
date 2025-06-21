@@ -5,3 +5,7 @@ export const routes: Routes = [
   { path: 'movies', loadComponent: () => import("./movies/movies.component").then(m => m.MoviesComponent) },
   { path: 'details-card/:id', loadComponent: () => import("./details-card/details-card.component").then(m => m.DetailsCardComponent) }
 ];
+
+
+
+
