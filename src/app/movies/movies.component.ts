@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms"
 import { Subscription } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { ButtonComponent } from "../button/button.component";
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-movies',
