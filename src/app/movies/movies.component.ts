@@ -85,7 +85,10 @@ export class MoviesComponent implements OnInit {
     this.scrollY = window.scrollY;
     this.isLoading = true;
     this.getMovies(this.currentPage)
+    console.log('hello world');
+
   }
+
 
 
 }
